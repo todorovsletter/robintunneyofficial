@@ -118,6 +118,9 @@ nav a {
     left: .25rem;
     background-color: #25292b;
 }
+.form-control label:has(input[type="checkbox"]) a {
+    display: inline-block;
+}
 .form-control.required label:after {
     content: "(Required)";
     display: inline-block;
