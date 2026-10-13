@@ -1,0 +1,308 @@
+@import url("../css/type.css");
+
+::selection {
+    background-color: #71858a;
+    color: #f7f8f8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-size: 20px;
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    font-family: "unica77", sans-serif;
+    line-height: 1.5;
+    color: #25292b;
+    background-image: linear-gradient(135deg, #f7f8f8, #e7eaeb);
+}
+
+a {
+    text-decoration: none;
+    color: #777f82;
+    transition: color .375s linear;
+}
+a:focus {
+    outline: 1px dotted;
+}
+a:hover {
+    color: #71858a;
+    outline: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: .5rem 1rem;
+    line-height: 1rem;
+}
+nav a {
+    display: inline-block;
+    text-box-trim: trim-both; 
+    text-box-edge: cap alphabetic;
+}
+
+.form-control {
+    position: relative;
+    font-size: clamp(.75em, 4.5vw, 1em);
+}
+.form-control:not(:last-of-type) {
+    margin: 0 0 1em;
+}
+.form-control label:not(:has(input)) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: -2px 0 0;
+    transition: all .375s linear;
+}
+.form-control.floating label {
+    top: 0;
+    transform: none;
+    margin: 0;
+    font-size: .75em;
+}
+.form-control input:not(label input, [type="submit"]) {
+    display: block;
+    border: none;
+    border-bottom: .1em solid #25292b;
+    border-radius: 0;
+    padding: 1em 0 .5em;
+    outline: none;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1em;
+    background-color: transparent;
+    width: 100%;
+    transition: border-color .375s linear;
+}
+.form-control input:not(label input, [type="submit"]):focus {
+    border-color: #71858a;
+}
+.form-control label:has(input[type="checkbox"]) {
+    padding: 0 0 0 2rem;
+    display: block;
+    position: relative;
+    font-size: .75em;
+    line-height: calc(4em/3);
+    overflow: auto;
+    cursor: pointer;
+}
+.form-control input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    border: 1px solid #25292b;
+    border-radius: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: none;
+    pointer-events: none;
+}
+.form-control input[type="checkbox"]:checked:after {
+    content: "";
+    position: absolute;
+    top: .25rem;
+    right: .25rem;
+    bottom: .25rem;
+    left: .25rem;
+    background-color: #25292b;
+}
+.form-control.required label:after {
+    content: "(Required)";
+    display: inline-block;
+    margin: 0 0 0 .5em;
+    font-size: .75em;
+    text-transform: uppercase;
+    color: #71858a;
+}
+.form-control input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: .75em 1.5em;
+    border: none;
+    border-radius: 0;
+    font-family: "didot";
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1em;
+    color: #f7f8f8;
+    background-color: #71858a;
+    cursor: pointer;
+    transition: background-color .375s linear;
+}
+.form-control input[type="submit"]:hover, .form-control input[type="submit"]:disabled {
+    background-color: rgba(113, 133, 138, .75);
+}
+.form-control input[type="submit"]:disabled {
+    pointer-events: none;
+} 
+
+#page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+}
+
+#hd, #bd, #ft {
+    width: 100%;
+    max-width: 96em;
+    padding: 0 2em;
+}
+
+#hd, #ft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#hd {
+    margin: 1em auto;
+}
+#logo {
+    font-family: "didot";
+    font-weight: 700;
+    letter-spacing: -.05em;
+}
+#navigation {
+    font-size: .9em;
+    letter-spacing: .05rem;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+#bd {
+    margin: auto;
+}
+#bd h2 {
+    font-family: "didot";
+    font-size: clamp(2.5em, 13.037809648vw, 5em);
+}
+#bd .subtitle {
+    color: #777f82;
+}
+
+#ft {
+    font-size: .75em;
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(231, 234, 235, .75);
+    display: none;
+}
+.modal-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 28.8em;
+    opacity: 0;
+    transition: opacity .375s .375s linear;
+}
+.modal.open .modal-wrapper {
+    opacity: 1;
+}
+.close {
+    position: absolute;
+    top: .5rem;
+    left: 100%;
+    margin: 0 0 0 .75rem;
+    font-size: 2em;
+    text-box-trim: trim-both; 
+    text-box-edge: cap alphabetic;
+    opacity: 0;
+    transition: opacity .375s linear;
+}
+.modal.open .close {
+    opacity: 1;
+    transition: opacity .375s .75s linear;
+}
+.modal-content {
+    padding: 1.5em 2em;
+    background-color: #f7f8f8;
+}
+
+#signupHd, #thankYou {
+    text-align: center;
+}
+#signup h2 {
+    font-family: "didot";
+    font-size: clamp(1em, 6.25vw, 1.5em);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+#signupHd p {
+    font-size: clamp(.75em, 4.5vw, 1em);
+}
+#signup form {
+    margin: 1em 0 0;
+}
+#signup form > p {
+    margin: calc(2rem/3) 0 0;
+    font-size: .75em;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    #page {
+        justify-content: space-between;
+    }
+    #hd {
+        padding: 1em 2em;
+        margin: 0;
+        border-bottom: 1px solid #e7eaeb;
+    }
+    #navigation, #bd .subtitle {
+        font-size: .75em;
+    }
+    #bd {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
+    #ft {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: .25rem;
+    }
+    #privacy {
+        height: 1.125rem;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .modal-content {
+        padding: 1em;
+    }
+    .modal .close {
+        top: calc(-21.78125px - .5rem);
+        right: 0;
+        left: auto;
+        margin: 0 0 .5rem;
+        font-size: 1.5em;
+    }
+    #signup form > p {
+        font-size: .5625em;
+    }
+}

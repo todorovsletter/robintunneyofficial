@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'didot';
+  src: url('../type/didot.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'didot';
+  src: url('../type/didot-bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'unica77';
+  src: url('../type/polestar-unica77-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
