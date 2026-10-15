@@ -10,13 +10,13 @@ $doc.ready(function(){
         $(this).click(function(e){
             event.preventDefault();
 
-            $target.fadeIn(375, "linear", function(){
+            $target.stop(true, true).fadeIn(375, "linear", function(){
                 $(this).addClass("open");
             });
 
             $close.click(function(e){
                 event.preventDefault();
-                $target.removeClass("open").delay(750).fadeOut(375, "linear");
+                $target.stop(true, true).removeClass("open").delay(750).fadeOut(375, "linear");
             });
 
             $target.click(function(e){
@@ -28,7 +28,7 @@ $doc.ready(function(){
             $doc.keydown(function(e){
                 if(e.key === "Escape" || e.keyCode === 27){
                     if($target.hasClass("open")){
-                        $target.find(".close").trigger("click");
+                        $close.trigger("click");
                     }
                 }
             });
@@ -43,8 +43,7 @@ $doc.ready(function(){
 
         $input.focus(function(){
             $this.addClass("floating");
-        });
-        $input.blur(function(){
+        }).blur(function(){
             if(!$(this).val()) {
                 $this.removeClass("floating");
             }
@@ -71,10 +70,47 @@ $doc.ready(function(){
     $("#signup form").on("submit", function(e){
         event.preventDefault();
 
-        $(this).closest(".modal-content").html('<p id="thankYou">Check your email for details.</p>');
-    })
+        var $this = $(this);
+
+        $.ajax({
+            url: "https://formspree.io/f/xkjokbba",
+            type: "POST",
+            data: $this.serialize(),
+            dataType: "json",
+            headers: {
+                "Accept": "application/json"
+            },
+            success: function() {
+                $this.closest(".modal-content").html('<p id="thankYou">Check your email for details.</p>');
+            },
+            error: function() {
+                $this.find("#errorMsg").remove();
+
+                $this.append($("<p>", {
+                    text: "It seems there was a problem. Please try again.",
+                    attr: {
+                        "id": "errorMsg"
+                    },
+                    css: {
+                        "text-align": "center",
+                        "color": "#840001"
+                    }
+                }));
+            }
+        });
+    });
 
     if(location.hash === "#signup") {
         $modalLink.filter('[href="#signup"]').trigger("click");
     }
+
+    $('.interior a:not(.modal-link)[href*="#"]').click(function(e){
+        var $target = $($(this).attr("href"));
+
+        event.preventDefault();
+
+        $("html, body").animate({
+            scrollTop: $target.offset().top - 20
+        }, 375, "linear")
+    })
 })
