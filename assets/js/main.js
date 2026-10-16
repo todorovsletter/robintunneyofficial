@@ -92,7 +92,6 @@ $doc.ready(function(){
                         "id": "errorMsg"
                     },
                     css: {
-                        "text-align": "center",
                         "color": "#840001"
                     }
                 }));

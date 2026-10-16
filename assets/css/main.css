@@ -237,8 +237,11 @@ nav a {
     gap: .5em 0;
     list-style-type: decimal;
 }
+.interior #bd nav a {
+    display: inline;
+}
 .interior #bd h2 {
-    font-family: 'unica77';
+    font-family: 'unica77', sans-serif;
     font-size: clamp(1.25em, 2.5vw, 1.5em);
     margin: 1rem 0 .5em;
 }
