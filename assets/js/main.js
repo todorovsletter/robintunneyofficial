@@ -111,6 +111,8 @@ $doc.ready(function(){
 
         $("html, body").animate({
             scrollTop: $target.offset().top - 20
-        }, 375, "linear")
+        }, 375, "linear");
+
+        $target.attr("tabindex", "-1").trigger("focus");
     })
 })
